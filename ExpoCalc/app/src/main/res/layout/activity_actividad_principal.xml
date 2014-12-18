@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".ActividadPrincipal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/etiqueta_K"
+        android:id="@+id/label_K"
+        android:layout_marginTop="109dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/text_K"
+        android:layout_alignLeft="@+id/text_K" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/text_K"
+        android:layout_below="@+id/label_K"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/etiqueta_base"
+        android:id="@+id/base"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/text_K"
+        android:layout_alignStart="@+id/text_K"
+        android:layout_alignLeft="@+id/text_K" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/text_base"
+        android:layout_below="@+id/base"
+        android:layout_alignLeft="@+id/text_K" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/etiqueta_exponente"
+        android:id="@+id/exponent"
+        android:layout_below="@+id/text_base"
+        android:layout_alignStart="@+id/text_exponent"
+        android:layout_alignLeft="@+id/text_exponent"
+        android:layout_marginTop="45dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/text_exponent"
+        android:layout_below="@+id/exponent"
+        android:layout_alignLeft="@+id/text_base" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_result"
+        android:id="@+id/button"
+        android:onClick="potential"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/text_exponent"
+        android:layout_alignRight="@+id/text_exponent"
+        android:layout_marginBottom="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/result"
+        android:text="@string/result"
+        android:textSize="20dp"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
