@@ -1,4 +1,4 @@
 Android_Projects
 ================
 
-Android projects created by me
+My Android projects
