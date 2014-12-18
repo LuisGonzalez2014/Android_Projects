@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Busqueda</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="boton">Buscar</string>
+    <string name="text_to_search">Introduzca qué desea buscar:</string>
+
+</resources>
