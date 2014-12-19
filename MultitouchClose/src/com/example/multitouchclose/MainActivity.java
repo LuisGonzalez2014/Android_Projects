@@ -13,12 +13,12 @@ public class MainActivity extends Activity {
 	private enum GestureDetectionState {
 		DETECTED, IDLE
 	}
-	private GestureDetectionState gds;        // Estado de ejecución
-	private double PERCENTAGE;                // Porcentaje necesario para determinar posición de los dedos
-	private PointF initial_point_1, initial_point_2, initial_point_3;        // Coordenadas iniciales de los 3 dedos
-	private PointF actual_point_1, actual_point_2, actual_point_3;           // Coordenadas actuales de los 3 dedos
-	private double initial_dist_1, initial_dist_2, initial_dist_3;           // Distancias iniciales entre los dedos
-	private double actual_dist_1, actual_dist_2, actual_dist_3;              // Distancias actuales entre los dedos
+	private GestureDetectionState gds;                                  // Estado de ejecución
+	private double PERCENTAGE;                                          // Porcentaje necesario para determinar posición de los dedos
+	private PointF initial_point_1, initial_point_2, initial_point_3;   // Coordenadas iniciales de los 3 dedos
+	private PointF actual_point_1, actual_point_2, actual_point_3;      // Coordenadas actuales de los 3 dedos
+	private double initial_dist_1, initial_dist_2, initial_dist_3;      // Distancias iniciales entre los dedos
+	private double actual_dist_1, actual_dist_2, actual_dist_3;         // Distancias actuales entre los dedos
 	TextView texto;
 	Switch sw;
 
@@ -26,25 +26,25 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		this.texto = (TextView) findViewById(R.id.text);
+		this.sw = (Switch) findViewById(R.id.s1);
+		texto.setText("¡ BIENVENID@ !");
 
 		// Inicialización de las variables
-		PERCENTAGE = 0.6;
+		PERCENTAGE = 0.6;                      // 60%
 		initial_point_1 = new PointF();
 		initial_point_2 = new PointF();
 		initial_point_3 = new PointF();
 		actual_point_1 = new PointF();
 		actual_point_2 = new PointF();
 		actual_point_3 = new PointF();
-		initial_dist_1=Integer.MAX_VALUE;
-		initial_dist_2=Integer.MAX_VALUE;
-		initial_dist_3=Integer.MAX_VALUE;
-		actual_dist_1=Integer.MIN_VALUE;
-		actual_dist_2=Integer.MIN_VALUE;
-		actual_dist_3=Integer.MIN_VALUE;
+		initial_dist_1 = Integer.MAX_VALUE;
+		initial_dist_2 = Integer.MAX_VALUE;
+		initial_dist_3 = Integer.MAX_VALUE;
+		actual_dist_1 = Integer.MIN_VALUE;
+		actual_dist_2 = Integer.MIN_VALUE;
+		actual_dist_3 = Integer.MIN_VALUE;
 		this.gds = GestureDetectionState.IDLE;
-		this.texto = (TextView) findViewById(R.id.text);
-		this.sw = (Switch) findViewById(R.id.s1);
-		texto.setText("¡ BIENVENID@ !");
 	}
 
 	@Override
