@@ -1663,6 +1663,8 @@ containing a value of this type.
         public static final int end=0x7f09001c;
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
+        public static final int g1=0x7f09003f;
+        public static final int g2=0x7f090040;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000e;
         public static final int icon=0x7f090026;
@@ -1674,12 +1676,10 @@ containing a value of this type.
         public static final int never=0x7f090017;
         public static final int none=0x7f09000f;
         public static final int normal=0x7f09000b;
-        public static final int p1=0x7f090040;
-        public static final int p2=0x7f090041;
-        public static final int p3=0x7f090042;
         public static final int progress_circular=0x7f090007;
         public static final int progress_horizontal=0x7f090008;
         public static final int radio=0x7f09002b;
+        public static final int s1=0x7f090041;
         public static final int search_badge=0x7f090035;
         public static final int search_bar=0x7f090034;
         public static final int search_button=0x7f090036;
@@ -1697,7 +1697,7 @@ containing a value of this type.
         public static final int split_action_bar=0x7f090004;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
-        public static final int text=0x7f09003f;
+        public static final int text=0x7f090042;
         public static final int title=0x7f090027;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
@@ -1816,12 +1816,11 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
-        public static final int action_settings=0x7f0a0012;
+        public static final int action_settings=0x7f0a0011;
         public static final int app_name=0x7f0a0010;
-        public static final int p1init=0x7f0a0013;
-        public static final int p2init=0x7f0a0014;
-        public static final int p3init=0x7f0a0015;
-        public static final int waiting=0x7f0a0011;
+        public static final int gesture_1=0x7f0a0012;
+        public static final int gesture_2=0x7f0a0013;
+        public static final int switch_1=0x7f0a0014;
     }
     public static final class style {
         /** 

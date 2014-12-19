@@ -3,8 +3,8 @@
 
     <string name="app_name">Multitouch Close</string>
     <string name="action_settings">Ajustes</string>
-    <string name="p1init">Distancia 1</string>
-    <string name="p2init">Distancia 2</string>
-    <string name="p3init">Distancia 3</string>
+    <string name="gesture_1">Realice gesto de pinza con 3 dedos para cerrar.</string>
+    <string name="gesture_2">Arrastre hacia abajo 3 dedos para ir al Home.</string>
+    <string name="switch_1">Comprobar</string>
 
 </resources>

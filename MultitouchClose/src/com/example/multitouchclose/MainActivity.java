@@ -4,29 +4,47 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.app.Activity;
 import android.graphics.PointF;
 
 public class MainActivity extends Activity {
 	private enum GestureDetectionState {
-		CAPTURING, DETECTED, IDLE
+		DETECTED, IDLE
 	}
-	private GestureDetectionState gds;
-	private double PERCENT = 0.6;
-	
-	TextView texto, d1, d2, d3;
+	private GestureDetectionState gds;        // Estado de ejecución
+	private double PERCENTAGE;                // Porcentaje necesario para determinar posición de los dedos
+	private PointF initial_point_1, initial_point_2, initial_point_3;        // Coordenadas iniciales de los 3 dedos
+	private PointF actual_point_1, actual_point_2, actual_point_3;           // Coordenadas actuales de los 3 dedos
+	private double initial_dist_1, initial_dist_2, initial_dist_3;           // Distancias iniciales entre los dedos
+	private double actual_dist_1, actual_dist_2, actual_dist_3;              // Distancias actuales entre los dedos
+	TextView texto;
+	Switch sw;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		texto = (TextView) findViewById(R.id.text);
-		d1 = (TextView) findViewById(R.id.p1);
-		d2 = (TextView) findViewById(R.id.p2);
-		d3 = (TextView) findViewById(R.id.p3);
+		// Inicialización de las variables
+		PERCENTAGE = 0.6;
+		initial_point_1 = new PointF();
+		initial_point_2 = new PointF();
+		initial_point_3 = new PointF();
+		actual_point_1 = new PointF();
+		actual_point_2 = new PointF();
+		actual_point_3 = new PointF();
+		initial_dist_1=Integer.MAX_VALUE;
+		initial_dist_2=Integer.MAX_VALUE;
+		initial_dist_3=Integer.MAX_VALUE;
+		actual_dist_1=Integer.MIN_VALUE;
+		actual_dist_2=Integer.MIN_VALUE;
+		actual_dist_3=Integer.MIN_VALUE;
 		this.gds = GestureDetectionState.IDLE;
+		this.texto = (TextView) findViewById(R.id.text);
+		this.sw = (Switch) findViewById(R.id.s1);
+		texto.setText("¡ BIENVENID@ !");
 	}
 
 	@Override
@@ -48,61 +66,84 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private PointF initial_point_1 = new PointF(), initial_point_2 = new PointF(), initial_point_3 = new PointF();
-	private PointF actual_point_1 = new PointF(), actual_point_2 = new PointF(), actual_point_3 = new PointF();
-	private double initial_dist_1=Integer.MAX_VALUE, initial_dist_2=Integer.MAX_VALUE, initial_dist_3=Integer.MAX_VALUE;
-	private double actual_dist_1=Integer.MIN_VALUE, actual_dist_2=Integer.MIN_VALUE, actual_dist_3=Integer.MIN_VALUE;
 	
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-    	if (ev.getPointerCount() == 3 && this.gds == GestureDetectionState.DETECTED)
+		texto.setText("Esperando gesto...");
+		
+		// Almacenamos el número de dedos en pantalla para evitar llamadas innecesarias
+		int num_pointers = ev.getPointerCount();
+		
+		// Si hay 3 dedos sobre la pantalla y ya se detectaron sus posiciones y distancias iniciales...
+    	if (num_pointers == 3 && this.gds == GestureDetectionState.DETECTED)
     	{
-			texto.setText("Esperando gesto...");
+    		// Almacenamos las coordenadas actuales de los 3 dedos
 			actual_point_1 = new PointF(ev.getX(ev.getPointerId(0)), ev.getY(ev.getPointerId(0)));
 			actual_point_2 = new PointF(ev.getX(ev.getPointerId(1)), ev.getY(ev.getPointerId(1)));
 			actual_point_3 = new PointF(ev.getX(ev.getPointerId(2)), ev.getY(ev.getPointerId(2)));
         	
+			// Calculamos las distancias actuales entre los 3 dedos
     		actual_dist_1 = this.distance(actual_point_1, actual_point_2);
     		actual_dist_2 = this.distance(actual_point_1, actual_point_3);
     		actual_dist_3 = this.distance(actual_point_2, actual_point_3);
     		
-        	d1.setText(Double.toString(this.distance(actual_point_1, actual_point_2)));
-        	d2.setText(Double.toString(this.distance(actual_point_1, actual_point_3)));
-        	d3.setText(Double.toString(this.distance(actual_point_2, actual_point_3)));
-    		
-    		if (initial_dist_1 * PERCENT >= actual_dist_1 &&
-    		    initial_dist_2 * PERCENT >= actual_dist_2 &&
-    		    initial_dist_3 * PERCENT >= actual_dist_3)
+    		// Si las distancias son un 60% de lo que eran al principio...
+    		if (initial_dist_1 * PERCENTAGE >= actual_dist_1 &&
+    		    initial_dist_2 * PERCENTAGE >= actual_dist_2 &&
+    		    initial_dist_3 * PERCENTAGE >= actual_dist_3)
     		{
-    			android.os.Process.killProcess(android.os.Process.myPid());
+    			if (sw.isChecked())
+    			{
+    				// Matamos el proceso de la aplicación
+        			android.os.Process.killProcess(android.os.Process.myPid());
+    			}
+    			else
+    			{
+    				texto.setText("Aplicación finalizada.");
+    			}
     		}
-    		else if (initial_point_1.y <= actual_point_1.y * PERCENT &&
-    				 initial_point_2.y <= actual_point_2.y * PERCENT &&
-    				 initial_point_3.y <= actual_point_3.y * PERCENT)
+    		// Si las coordenadas Y de los 3 dedos aumentan un 60%...
+    		else if (initial_point_1.y <= actual_point_1.y * PERCENTAGE &&
+    				 initial_point_2.y <= actual_point_2.y * PERCENTAGE &&
+    				 initial_point_3.y <= actual_point_3.y * PERCENTAGE)
     		{
-    			super.finish();
+    			if (sw.isChecked())
+    			{
+    				// Volvemos al 'HOME' dejando la app en segundo plano
+    				super.finish();
+    			}
+    			else
+    			{
+    				texto.setText("Aplicación en segundo plano.");
+    			}
     		}
     	}
-    	else if (ev.getPointerCount() == 3 && this.gds == GestureDetectionState.IDLE)
+    	// Si hay 3 dedos sobre la pantalla y no se detectaron sus posiciones y distancias iniciales...
+    	else if (num_pointers == 3 && this.gds == GestureDetectionState.IDLE)
     	{
+    		// Cambiamos a estado DETECTADOS
     		this.gds = GestureDetectionState.DETECTED;
+    		// Almacenamos las coordenadas iniciales de los 3 dedos
     		initial_point_1 = new PointF(ev.getX(ev.getPointerId(0)), ev.getY(ev.getPointerId(0)));
     		initial_point_2 = new PointF(ev.getX(ev.getPointerId(1)), ev.getY(ev.getPointerId(1)));
     		initial_point_3 = new PointF(ev.getX(ev.getPointerId(2)), ev.getY(ev.getPointerId(2)));
         	
+    		// Calculamos las distancias iniciales entre los 3 dedos
         	initial_dist_1 = this.distance(initial_point_1, initial_point_2);
         	initial_dist_2 = this.distance(initial_point_1, initial_point_3);
         	initial_dist_3 = this.distance(initial_point_2, initial_point_3);
     	}
-    	else if (ev.getPointerCount() == 0)
+    	// Si no hay dedos sobre la pantalla...
+    	else if (ev.getAction() == MotionEvent.ACTION_UP)
     	{
-			texto.setText("Esperando gesto...");
+    		// Volvemos al estado inicial
     		this.gds = GestureDetectionState.IDLE;
     	}
         
         return true;
     }
     
+    // Método para calcular la distancia entre dos puntos PointF.
     private double distance(PointF p1, PointF p2) {
     	return Math.sqrt(Math.pow(p2.x-p1.x, 2) + Math.pow(p2.y-p1.y, 2));
     }
