@@ -1,3 +1,9 @@
+/*
+ * MainActivity.java
+ * 
+ * Created on December 18, 2014
+ */
+
 package com.example.multitouchclose;
 
 import android.os.Bundle;
@@ -9,7 +15,15 @@ import android.widget.TextView;
 import android.app.Activity;
 import android.graphics.PointF;
 
+/** Clase para la actividad principal
+ * 
+ * @author Luis Alejandro Gonzalez Borras
+ * @author Jose Manuel Gomez Gonzalez
+ * @version 1.0
+ * @see Visitar www.github.com/LuisGonzalez2014/Android_Projects/tree/master/MultitouchClose
+ */
 public class MainActivity extends Activity {
+	/** Enumerado con los estados posibles en la detección del gesto */
 	private enum GestureDetectionState {
 		DETECTED, IDLE
 	}
@@ -66,7 +80,10 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	
+
+	/**
+     * @param ev objeto para reportar movimiento
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
 		texto.setText("Esperando gesto...");
@@ -144,6 +161,12 @@ public class MainActivity extends Activity {
     }
     
     // Método para calcular la distancia entre dos puntos PointF.
+	/**
+     * @param p1 punto con las coordenadas x e y
+     * @param p2 punto con las coordenadas x e y
+     * 
+     * @return distancia entre p1 y p2
+     */
     private double distance(PointF p1, PointF p2) {
     	return Math.sqrt(Math.pow(p2.x-p1.x, 2) + Math.pow(p2.y-p1.y, 2));
     }
