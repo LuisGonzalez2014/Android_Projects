@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Multitouch Close</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="p1init">Distancia 1</string>
+    <string name="p2init">Distancia 2</string>
+    <string name="p3init">Distancia 3</string>
+
+</resources>
