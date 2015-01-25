@@ -22,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+    		android:name=".QRCodeReader"
+  			android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+    		android:theme="@android:style/Theme.NoTitleBar">
+		</activity>
     </application>
 
 </manifest>
