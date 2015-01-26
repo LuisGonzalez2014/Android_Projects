@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">appFotoBrujula</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="punto_cardinal">Punto Cardinal (N,NE,NO,S,SE,SO,E,O)</string>
+    <string name="mensaje">Bienvenid@</string>
+    <string name="aceptar">ACEPTAR</string>
 
 </resources>
