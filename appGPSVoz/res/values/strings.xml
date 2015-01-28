@@ -2,7 +2,10 @@
 <resources>
 
     <string name="app_name">appGPSVoz</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="welcome">BIENVENID@</string>
+    <string name="instructions">Pulse el botón y en voz alta diga:\n"LATITUD" e indíquela en formato decimal
+        \n"LONGITUD" e indíquela en formato decimal</string>
+    <string name="iniciar">INICIAR</string>
 
 </resources>
