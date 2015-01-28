@@ -2,9 +2,16 @@
 <resources>
 
     <string name="app_name">appFotoBrujula</string>
-    <string name="action_settings">Settings</string>
-    <string name="punto_cardinal">Punto Cardinal (N,NE,NO,S,SE,SO,E,O)</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="punto_cardinal">Seleccione un punto cardinal:</string>
     <string name="mensaje">Bienvenid@</string>
-    <string name="aceptar">ACEPTAR</string>
+    <string name="radio_norte">NORTE</string>
+    <string name="radio_sur">SUR</string>
+    <string name="radio_este">ESTE</string>
+    <string name="radio_oeste">OESTE</string>
+    <string name="radio_noreste">NORESTE</string>
+    <string name="radio_sureste">SURESTE</string>
+    <string name="radio_noroeste">NOROESTE</string>
+    <string name="radio_suroeste">SUROESTE</string>
 
 </resources>

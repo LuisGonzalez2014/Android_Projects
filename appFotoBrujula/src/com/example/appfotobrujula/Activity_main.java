@@ -10,17 +10,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.RadioButton;
 
 
 public class Activity_main extends Activity implements SensorEventListener{
-	private TextView mensaje;
-	private EditText pCardinal;
-	private boolean boton;
+	private RadioButton button_norte, button_sur, button_este, button_oeste;
+	private RadioButton button_noreste, button_sureste, button_noroeste, button_suroeste;
 	static final int REQUEST_IMAGE_CAPTURE = 1;
-	private String cardinal;
 	
     // Sensors and location
     private SensorManager mSensorManager;
@@ -32,11 +28,14 @@ public class Activity_main extends Activity implements SensorEventListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interfaz);
         
-        mensaje = (TextView) findViewById(R.id.textViewMensaje);
-        pCardinal = (EditText) findViewById(R.id.editTextCardinal);
-        
-        boton = false;
-        cardinal = new String();
+        button_norte = (RadioButton) findViewById(R.id.radioNorte);
+        button_sur = (RadioButton) findViewById(R.id.radioSur);
+        button_este = (RadioButton) findViewById(R.id.radioEste);
+        button_oeste = (RadioButton) findViewById(R.id.radioOeste);
+        button_noreste = (RadioButton) findViewById(R.id.radioNoreste);
+        button_sureste = (RadioButton) findViewById(R.id.radioSureste);
+        button_noroeste = (RadioButton) findViewById(R.id.radioNoroeste);
+        button_suroeste = (RadioButton) findViewById(R.id.radioSuroeste);
         
         // Initialize sensors
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -90,54 +89,44 @@ public class Activity_main extends Activity implements SensorEventListener{
 		float azimuth_angle = event.values[0];
 	    float error = 5;
         
-	    if (boton)
+	    if ((azimuth_angle >= 180-error && azimuth_angle <= 180+error) && button_sur.isChecked())
+        {
+            this.dispatchTakePictureIntent();
+        } 
+	    else if ((azimuth_angle >= 90-error && azimuth_angle <= 90+error) && button_este.isChecked())
+        {
+            this.dispatchTakePictureIntent();
+        } 
+	    else if ((azimuth_angle >= 270-error && azimuth_angle <= 270+error) && button_oeste.isChecked())
+        {
+            this.dispatchTakePictureIntent();
+        } 
+	    else if ((azimuth_angle >= 45-error && azimuth_angle <= 45+error) && button_noreste.isChecked())
 	    {
-	        if ((azimuth_angle >= 180-error && azimuth_angle <= 180+error) && cardinal.equals("S"))
-	        {
-	            this.dispatchTakePictureIntent();
-	        } 
-		    else if ((azimuth_angle >= 90-error && azimuth_angle <= 90+error) && cardinal.equals("E"))
-	        {
-	            this.dispatchTakePictureIntent();
-	        } 
-		    else if ((azimuth_angle >= 270-error && azimuth_angle <= 270+error) && cardinal.equals("O"))
-	        {
-	            this.dispatchTakePictureIntent();
-	        } 
-		    else if ((azimuth_angle >= 45-error && azimuth_angle <= 45+error) && cardinal.equals("NE"))
-		    {
-	            this.dispatchTakePictureIntent();
-	        } 
-		    else if ((azimuth_angle >= 135-error && azimuth_angle <= 135+error) && cardinal.equals("SE"))
-	        {
-	            this.dispatchTakePictureIntent();
-	        } 
-		    else if ((azimuth_angle >= 315-error && azimuth_angle <= 315+error) && cardinal.equals("NO"))
-	        {
-	            this.dispatchTakePictureIntent();
-	        } 
-		    else if ((azimuth_angle >= 225-error && azimuth_angle <= 225+error) && cardinal.equals("SO"))
-	        {
-	            this.dispatchTakePictureIntent();
-	        }
-		    else if ((azimuth_angle >= 360-error || azimuth_angle <= error) && cardinal.equals("N"))
-		    {
-	            this.dispatchTakePictureIntent();
-	        }
-	    }
+            this.dispatchTakePictureIntent();
+        } 
+	    else if ((azimuth_angle >= 135-error && azimuth_angle <= 135+error) && button_sureste.isChecked())
+        {
+            this.dispatchTakePictureIntent();
+        } 
+	    else if ((azimuth_angle >= 315-error && azimuth_angle <= 315+error) && button_noroeste.isChecked())
+        {
+            this.dispatchTakePictureIntent();
+        } 
+	    else if ((azimuth_angle >= 225-error && azimuth_angle <= 225+error) && button_suroeste.isChecked())
+        {
+            this.dispatchTakePictureIntent();
+        }
+	    else if ((azimuth_angle >= 360-error || azimuth_angle <= error) && button_norte.isChecked())
+	    {
+            this.dispatchTakePictureIntent();
+        }
 	}
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	public boolean aceptButton(View view){
-		boton = true;
-		cardinal = pCardinal.getText().toString().toUpperCase();
-
-        return true;
 	}
 	
 	private void dispatchTakePictureIntent() {
