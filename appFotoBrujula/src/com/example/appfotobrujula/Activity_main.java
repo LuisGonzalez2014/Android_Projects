@@ -1,3 +1,18 @@
+/*
+ *  Copyright (C) 2014, 2015 - Luis Alejandro González Borrás, Jose Manuel GómezGonzález>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.example.appfotobrujula;
 
 import android.app.Activity;
@@ -12,13 +27,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
 
-
+/** Clase para la actividad principal que implementa el control de eventos
+ * de los sensores
+ * 
+ * @author Luis Alejandro Gonzalez Borras
+ * @author Jose Manuel Gomez Gonzalez
+ * @version 1.0
+ * @see Visitar www.github.com/LuisGonzalez2014/Android_Projects/tree/master/appFotoBrujula
+ */
 public class Activity_main extends Activity implements SensorEventListener{
 	private RadioButton button_norte, button_sur, button_este, button_oeste;
 	private RadioButton button_noreste, button_sureste, button_noroeste, button_suroeste;
 	static final int REQUEST_IMAGE_CAPTURE = 1;
 	
-    // Sensors and location
+    // Sensores y Orientación
     private SensorManager mSensorManager;
     private Sensor mOrientation;
     
@@ -37,7 +59,7 @@ public class Activity_main extends Activity implements SensorEventListener{
         button_noroeste = (RadioButton) findViewById(R.id.radioNoroeste);
         button_suroeste = (RadioButton) findViewById(R.id.radioSuroeste);
         
-        // Initialize sensors
+        // Inicialización de los sensores
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mOrientation = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
     }
@@ -83,11 +105,13 @@ public class Activity_main extends Activity implements SensorEventListener{
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * @param event objeto para reportar cambio en el sensor
+     */
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float azimuth_angle = event.values[0];
-	    float error = 5;
+		float azimuth_angle = event.values[0];        // Devuelve los grados de rotación del telefono (0=Norte)
+	    float error = 5;                              // Grados de error permitidos
         
 	    if ((azimuth_angle >= 180-error && azimuth_angle <= 180+error) && button_sur.isChecked())
         {
@@ -129,6 +153,9 @@ public class Activity_main extends Activity implements SensorEventListener{
 		
 	}
 	
+	/** 
+	 * Método para lanzar la aplicación de cámara del dispositivo
+	 */
 	private void dispatchTakePictureIntent() {
 	    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {

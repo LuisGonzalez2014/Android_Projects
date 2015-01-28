@@ -1,3 +1,18 @@
+/*
+ *  Copyright (C) 2014, 2015 - Luis Alejandro González Borrás, Jose Manuel GómezGonzález>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.example.appgestosqr;
 
 import java.util.ArrayList;
@@ -15,6 +30,14 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import com.example.appgestosqr.QRCodeReader;
 
+
+/** Clase para la actividad principal
+ * 
+ * @author Luis Alejandro Gonzalez Borras
+ * @author Jose Manuel Gomez Gonzalez
+ * @version 1.0
+ * @see Visitar www.github.com/LuisGonzalez2014/Android_Projects/tree/master/appGestosQR
+ */
 public class MainActivity extends Activity {
     private Canvas canvas;
     private Paint pincel;
@@ -36,21 +59,26 @@ public class MainActivity extends Activity {
         imageView = (ImageView) this.findViewById(R.id.imageView1);
         secuencia = new String();
         
+        // Obtenemos las dimensiones de la pantalla
         Display currentDisplay = getWindowManager().getDefaultDisplay();
         dw = currentDisplay.getWidth();
         dh = currentDisplay.getHeight();
 
+        // Creamos un bitmap con las medidas de la pantalla
         bitmap = Bitmap.createBitmap((int) dw, (int) dh, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         imageView.setImageBitmap(bitmap);
         
+        // Inicialiazamos el pincel y le asiganamos un color
         pincel = new Paint();
         pincel.setARGB(255,190,190,190);
         
+        // Radio de los circulos a dibujar y coordenadas de la primera circunferencia
         float radio = 30;
         float topLeftX = (float) (dw/4.0);
         float topLeftY = (float) (dh/4.0);
     	
+        // Se almacenan todos los puntos y se dibujan en pantalla
         Integer k=0;
     	for (int i=1 ; i<=3 ; i++)
         {
@@ -69,7 +97,6 @@ public class MainActivity extends Activity {
 	        }
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,10 +120,15 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		// Se cambia el color del pincel
 		pincel.setARGB(255,244,81,30);
+		
+		// Capturamos la acción
 		int action = event.getAction();
 		actual_point = new PointF(event.getX(event.getPointerId(0)), event.getY(event.getPointerId(0)));
 		MyPoint mpoint = new MyPoint();
+		
+		// Radio de los circulos a dibujar
 		int radio = 20;
 		
 		switch (action) {
@@ -148,7 +180,9 @@ public class MainActivity extends Activity {
 	    return true;
 	}
 	
-	// Comprueba si el punto tiene las mismas coordenadas que alguno de los dibujados
+	/**
+	 * Método que comprueba si el punto tiene las mismas coordenadas que alguno de los dibujados
+	 */
 	public MyPoint pointTouch(PointF finger){
 		int radio = 70;
 		for (MyPoint p : this.myPoints)
@@ -157,62 +191,5 @@ public class MainActivity extends Activity {
         	   return p;
 		}
 		return null;
-	}
-}
-
-class MyPoint {
-	private float x, y, radius;
-	private Integer id;
-	private Paint color;
-	
-	public MyPoint(){
-		this.id = 0;
-		this.x = 0;
-		this.y = 0;
-		this.radius = 30;
-		this.color = new Paint();
-		this.color.setARGB(255,190,190,190);
-	}
-	
-	// Modificadores
-	public void setId(Integer id){
-		this.id = id;
-	}
-	
-	public void setX(float x){
-		this.x = x;
-	}
-	
-	public void setY(float y){
-		this.y = y;
-	}
-	
-	public void setRadius(float radius){
-		this.radius = radius;
-	}
-	
-	public void setColor(Paint paint){
-		this.color.setColor(paint.getColor());
-	}
-	
-	// Consultores
-	public Integer getId(){
-		return this.id;
-	}
-	
-	public float getX(){
-		return this.x;
-	}
-	
-	public float getY(){
-		return this.y;
-	}
-	
-	public float getRadius(){
-		return this.radius;
-	}
-	
-	public Paint getColor(){
-		return this.color;
 	}
 }
