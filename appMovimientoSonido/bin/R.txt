@@ -367,7 +367,6 @@ int id homeAsUp 0x7f0a000e
 int id icon 0x7f0a0026
 int id ifRoom 0x7f0a0016
 int id image 0x7f0a0023
-int id iniciar 0x7f0a0042
 int id instructions 0x7f0a0041
 int id linlay 0x7f0a003f
 int id listMode 0x7f0a000a
@@ -379,6 +378,7 @@ int id normal 0x7f0a000b
 int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a002b
+int id reset 0x7f0a0042
 int id search_badge 0x7f0a0035
 int id search_bar 0x7f0a0034
 int id search_button 0x7f0a0036

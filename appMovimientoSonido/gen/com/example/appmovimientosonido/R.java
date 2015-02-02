@@ -1668,7 +1668,6 @@ containing a value of this type.
         public static final int icon=0x7f0a0026;
         public static final int ifRoom=0x7f0a0016;
         public static final int image=0x7f0a0023;
-        public static final int iniciar=0x7f0a0042;
         public static final int instructions=0x7f0a0041;
         public static final int linlay=0x7f0a003f;
         public static final int listMode=0x7f0a000a;
@@ -1680,6 +1679,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
+        public static final int reset=0x7f0a0042;
         public static final int search_badge=0x7f0a0035;
         public static final int search_bar=0x7f0a0034;
         public static final int search_button=0x7f0a0036;

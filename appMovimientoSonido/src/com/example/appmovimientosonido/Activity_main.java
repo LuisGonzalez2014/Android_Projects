@@ -1,6 +1,25 @@
+/*
+ *  Copyright (C) 2014, 2015 - Luis Alejandro González Borrás, Jose Manuel Gómez González>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.example.appmovimientosonido;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,6 +27,7 @@ import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,30 +43,30 @@ import android.widget.TextView;
  * @see Visitar www.github.com/LuisGonzalez2014/Android_Projects/tree/master/appMovimientoSonido
  */
 public class Activity_main extends Activity implements SensorEventListener {
-	public enum Estado {
-        ON_P1, ON_P2, ON_P3, ON_P4
-     };
+	public enum Estado { ON_P1, ON_P2, ON_P3, ON_P4 };
 	
 	Button start;
     private SensorManager mSensor;
+    private Vibrator vibracion;
     private TextView text;
     private MediaPlayer mp;
 	private Estado state;
+	private Integer tope;
     
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interfaz);
         
-        start = (Button) findViewById(R.id.iniciar);
+        // Inicialización de variables
+        tope = 5;
+        start = (Button) findViewById(R.id.reset);
         text = (TextView) findViewById(R.id.texto);
-        
         mSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
         mSensor.registerListener(this,mSensor.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),SensorManager.SENSOR_DELAY_UI);
-        
-        // ESTADO
-        state = Estado.ON_P1;
-        
+        vibracion = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
+        state = Estado.ON_P1;                   // ESTADO
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  // El dispositivo funcionará con la pantalla en vertical
         // SONIDO
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         mp = MediaPlayer.create(this, R.raw.laser);
@@ -76,32 +96,36 @@ public class Activity_main extends Activity implements SensorEventListener {
      */
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-			float values[] = event.values;
-			 
-	        Integer eje_x = (int) values[0];
-	        Integer eje_y = (int) values[1];
-	        Integer eje_z = (int) values[2];
-	        text.setText("ESTADO: " + state.toString());
+		if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION)
+		{
+			float eje_X = event.values[0];
+			float eje_Y = event.values[1];
+			float eje_Z = event.values[2];
+            
+	        //text.setText("ESTADO: " + state.toString());
 			
-			Integer tope = 5;
-			
-			if (state == Estado.ON_P1 && eje_x >= tope)
+			if (state.equals(Estado.ON_P1) && eje_X >= tope && Math.abs(eje_Z) <= 2)
 			{
+				vibracion.vibrate(100);
 				state = Estado.ON_P2;
 			}
-			else if (state == Estado.ON_P2 && eje_x <= -tope && eje_z <= -(tope/2))
+			else if (state.equals(Estado.ON_P2) && eje_X <= -tope && eje_Z <= -(tope/2))
 			{
+				vibracion.vibrate(100);
 				state = Estado.ON_P3;
 			}
-			else if (state == Estado.ON_P3 && eje_x >= tope*2)
+			else if (state.equals(Estado.ON_P3) && eje_X >= tope && Math.abs(eje_Z) <= 2)
 			{
+				vibracion.vibrate(200);
 				state = Estado.ON_P4;
 				mp.start();
 			}
-        }
+		}
 	}
 
+	/**
+     * Función que se ejecuta al pulsar el botón de reseteo
+     */
 	public void resetear(View v){
 		state = Estado.ON_P1;
 	}
