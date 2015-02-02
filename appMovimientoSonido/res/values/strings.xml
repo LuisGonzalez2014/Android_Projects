@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">appMovimientoSonido</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="welcome">BIENVENID@</string>
+    <string name="instructions">Realice un movimiento en Z con la pantalla del dispositivo apuntando hacia arriba.</string>
+    <string name="reset">RESETEAR</string>
 
 </resources>
