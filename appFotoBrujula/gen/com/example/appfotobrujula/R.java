@@ -1677,6 +1677,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f090007;
         public static final int progress_horizontal=0x7f090008;
         public static final int radio=0x7f09002b;
+        public static final int radioCardinality=0x7f090041;
         public static final int radioEste=0x7f090044;
         public static final int radioNoreste=0x7f090046;
         public static final int radioNoroeste=0x7f090048;
@@ -1702,7 +1703,6 @@ containing a value of this type.
         public static final int split_action_bar=0x7f090004;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
-        public static final int tableLayout1=0x7f090041;
         public static final int textViewCardinal=0x7f090040;
         public static final int textViewMensaje=0x7f09003f;
         public static final int title=0x7f090027;

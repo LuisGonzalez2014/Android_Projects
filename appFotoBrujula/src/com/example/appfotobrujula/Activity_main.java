@@ -17,6 +17,7 @@ package com.example.appfotobrujula;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -26,6 +27,7 @@ import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 /** Clase para la actividad principal que implementa el control de eventos
  * de los sensores
@@ -36,9 +38,11 @@ import android.widget.RadioButton;
  * @see Visitar www.github.com/LuisGonzalez2014/Android_Projects/tree/master/appFotoBrujula
  */
 public class Activity_main extends Activity implements SensorEventListener{
-	private RadioButton button_norte, button_sur, button_este, button_oeste;
-	private RadioButton button_noreste, button_sureste, button_noroeste, button_suroeste;
+	private RadioGroup radioCardinalityGroup;
+	private RadioButton cardinality;
 	static final int REQUEST_IMAGE_CAPTURE = 1;
+	float azimuth_angle;
+	float error;                              // Grados de error permitidos
 	
     // Sensores y Orientación
     private SensorManager mSensorManager;
@@ -50,16 +54,15 @@ public class Activity_main extends Activity implements SensorEventListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interfaz);
         
-        button_norte = (RadioButton) findViewById(R.id.radioNorte);
-        button_sur = (RadioButton) findViewById(R.id.radioSur);
-        button_este = (RadioButton) findViewById(R.id.radioEste);
-        button_oeste = (RadioButton) findViewById(R.id.radioOeste);
-        button_noreste = (RadioButton) findViewById(R.id.radioNoreste);
-        button_sureste = (RadioButton) findViewById(R.id.radioSureste);
-        button_noroeste = (RadioButton) findViewById(R.id.radioNoroeste);
-        button_suroeste = (RadioButton) findViewById(R.id.radioSuroeste);
+        // El dispositivo funcionará con la pantalla en vertical
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         
-        // Inicialización de los sensores
+        radioCardinalityGroup = (RadioGroup) findViewById(R.id.radioCardinality);
+     	cardinality = (RadioButton) findViewById(radioCardinalityGroup.getCheckedRadioButtonId());
+     	
+     	azimuth_angle = 0;
+     	error = 5;
+     	// Inicialización de los sensores
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mOrientation = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
     }
@@ -110,38 +113,44 @@ public class Activity_main extends Activity implements SensorEventListener{
      */
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float azimuth_angle = event.values[0];        // Devuelve los grados de rotación del telefono (0=Norte)
-	    float error = 5;                              // Grados de error permitidos
-        
-	    if ((azimuth_angle >= 180-error && azimuth_angle <= 180+error) && button_sur.isChecked())
+		azimuth_angle = event.values[0];        // Devuelve los grados de rotación del telefono (0=Norte)
+	    
+	    this.detectOrientation();
+	}
+	
+	public void detectOrientation(){
+		radioCardinalityGroup = (RadioGroup) findViewById(R.id.radioCardinality);
+		cardinality = (RadioButton) findViewById(radioCardinalityGroup.getCheckedRadioButtonId());
+		
+     	if ((azimuth_angle >= 180-error && azimuth_angle <= 180+error) && cardinality.getId() == R.id.radioSur)
         {
             this.dispatchTakePictureIntent();
         } 
-	    else if ((azimuth_angle >= 90-error && azimuth_angle <= 90+error) && button_este.isChecked())
+	    else if ((azimuth_angle >= 90-error && azimuth_angle <= 90+error) && cardinality.getId() == R.id.radioEste)
         {
             this.dispatchTakePictureIntent();
         } 
-	    else if ((azimuth_angle >= 270-error && azimuth_angle <= 270+error) && button_oeste.isChecked())
+	    else if ((azimuth_angle >= 270-error && azimuth_angle <= 270+error) && cardinality.getId() == R.id.radioOeste)
         {
             this.dispatchTakePictureIntent();
         } 
-	    else if ((azimuth_angle >= 45-error && azimuth_angle <= 45+error) && button_noreste.isChecked())
+	    else if ((azimuth_angle >= 45-error && azimuth_angle <= 45+error) && cardinality.getId() == R.id.radioNoreste)
 	    {
             this.dispatchTakePictureIntent();
         } 
-	    else if ((azimuth_angle >= 135-error && azimuth_angle <= 135+error) && button_sureste.isChecked())
+	    else if ((azimuth_angle >= 135-error && azimuth_angle <= 135+error) && cardinality.getId() == R.id.radioSureste)
         {
             this.dispatchTakePictureIntent();
         } 
-	    else if ((azimuth_angle >= 315-error && azimuth_angle <= 315+error) && button_noroeste.isChecked())
+	    else if ((azimuth_angle >= 315-error && azimuth_angle <= 315+error) && cardinality.getId() == R.id.radioNoroeste)
         {
             this.dispatchTakePictureIntent();
         } 
-	    else if ((azimuth_angle >= 225-error && azimuth_angle <= 225+error) && button_suroeste.isChecked())
+	    else if ((azimuth_angle >= 225-error && azimuth_angle <= 225+error) && cardinality.getId() == R.id.radioSuroeste)
         {
             this.dispatchTakePictureIntent();
         }
-	    else if ((azimuth_angle >= 360-error || azimuth_angle <= error) && button_norte.isChecked())
+	    else if ((azimuth_angle >= 360-error || azimuth_angle <= error) && cardinality.getId() == R.id.radioNorte)
 	    {
             this.dispatchTakePictureIntent();
         }

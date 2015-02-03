@@ -36,7 +36,7 @@ import android.widget.TextView;
  * 
  * @author Luis Alejandro Gonzalez Borras
  * @author Jose Manuel Gomez Gonzalez
- * @version 1.0
+ * @version 2.0
  * @see Visitar www.github.com/LuisGonzalez2014/Android_Projects/tree/master/appMovimientoSonido
  */
 public class Activity_main extends Activity implements SensorEventListener {
