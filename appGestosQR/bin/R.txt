@@ -797,6 +797,7 @@ int string abc_toolbar_collapse_description 0x7f0b0004
 int string action_settings 0x7f0b0120
 int string app_name 0x7f0b011f
 int string metaioSDKSignature 0x7f0b0010
+int string nameApp 0x7f0b0121
 int style AppBaseTheme 0x7f0c00ef
 int style AppTheme 0x7f0c00f0
 int style Base_TextAppearance_AppCompat 0x7f0c0098

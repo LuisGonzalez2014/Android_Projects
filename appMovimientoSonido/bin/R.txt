@@ -378,7 +378,7 @@ int id normal 0x7f0a000b
 int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a002b
-int id reset 0x7f0a0042
+int id reset 0x7f0a0043
 int id search_badge 0x7f0a0035
 int id search_bar 0x7f0a0034
 int id search_button 0x7f0a0036
@@ -396,7 +396,7 @@ int id showTitle 0x7f0a0012
 int id split_action_bar 0x7f0a0004
 int id submit_area 0x7f0a003c
 int id tabMode 0x7f0a000c
-int id texto 0x7f0a0043
+int id texto 0x7f0a0042
 int id title 0x7f0a0027
 int id up 0x7f0a0001
 int id useLogo 0x7f0a0013

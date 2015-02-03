@@ -4,5 +4,6 @@
     <string name="app_name">appGestosQR</string>
     <string name="action_settings">Settings</string>
     <string name="metaioSDKSignature">OiDHsrP8dVSXyu1GxudXRisXgxuM4Pt5mlpKp9N9hEg=</string>
+    <string name="nameApp">GESTOS QR</string>
 
 </resources>

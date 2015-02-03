@@ -2710,6 +2710,7 @@ containing a value of this type.
         public static final int action_settings=0x7f0b0120;
         public static final int app_name=0x7f0b011f;
         public static final int metaioSDKSignature=0x7f0b0010;
+        public static final int nameApp=0x7f0b0121;
     }
     public static final class style {
         /** 
