@@ -4,7 +4,13 @@
     <string name="app_name">appMovimientoSonido</string>
     <string name="action_settings">Ajustes</string>
     <string name="welcome">BIENVENID@</string>
-    <string name="instructions">Realice un movimiento en Z con la pantalla del dispositivo apuntando hacia arriba.</string>
+    <string name="instructions">Tiene que realizar un movimiento en Z:
+        \n1º Coloque el dispositivo con la pantalla apuntando al suelo.
+        \n2º Realice un desplazamiento hacia la derecha.
+        \n3º Incline el dispositivo unos 45 grados con la pantalla hacia la izquierda.
+        \n4º Realice un movimiento en diagonal.
+        \n5º Vuelva a poner el dispositivo con la pantalla hacia abajo.
+        \n6º Finalice haciendo un desplazamiento hacia la derecha.</string>
     <string name="reset">RESETEAR</string>
 
 </resources>

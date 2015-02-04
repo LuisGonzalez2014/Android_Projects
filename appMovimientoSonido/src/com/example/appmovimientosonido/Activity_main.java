@@ -28,7 +28,6 @@ import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 /** Clase para la actividad principal que implementa el control de eventos
@@ -42,7 +41,6 @@ import android.widget.TextView;
 public class Activity_main extends Activity implements SensorEventListener {
 	public enum Estado { QUIET, ON_P1, ON_P2, ON_P3, ON_P4 };
 	
-	private Button start;
     private SensorManager mSensor;
     private Vibrator vibracion;
     private TextView text;
@@ -60,7 +58,6 @@ public class Activity_main extends Activity implements SensorEventListener {
         
         // Inicialización de variables
         acceleration = 8;
-        start = (Button) findViewById(R.id.reset);
         text = (TextView) findViewById(R.id.texto);
         mSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
         mSensor.registerListener(this,mSensor.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),SensorManager.SENSOR_DELAY_UI);
