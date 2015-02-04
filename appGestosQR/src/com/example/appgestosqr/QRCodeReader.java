@@ -101,7 +101,7 @@ public class QRCodeReader extends ARViewActivity {
                     			runOnUiThread(new Runnable() {
                     				@Override
                     				 public void run() {
-                    					Toast toast = Toast.makeText(getApplicationContext(), "Latitud: "+latitud+ "\nLongitud: "+longitud, Toast.LENGTH_LONG);
+                    					Toast toast = Toast.makeText(getApplicationContext(), "Latitud: "+latitud+ "\nLongitud: "+longitud, Toast.LENGTH_SHORT);
                             			toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                             			
                             			toast.show();
