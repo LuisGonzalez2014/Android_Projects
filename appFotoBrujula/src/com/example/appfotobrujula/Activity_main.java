@@ -26,6 +26,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -44,6 +47,12 @@ public class Activity_main extends Activity implements SensorEventListener{
 	float azimuth_angle;
 	float error;                              // Grados de error permitidos
 	
+	// Initialize ImageView
+    private ImageView image;
+	
+    // Degrees
+    private float fromDegrees, toDegrees;
+    
     // Sensores y Orientación
     private SensorManager mSensorManager;
     private Sensor mOrientation;
@@ -59,9 +68,13 @@ public class Activity_main extends Activity implements SensorEventListener{
         
         radioCardinalityGroup = (RadioGroup) findViewById(R.id.radioCardinality);
      	cardinality = (RadioButton) findViewById(radioCardinalityGroup.getCheckedRadioButtonId());
+     	image = (ImageView) findViewById(R.id.imageViewFlecha);
      	
      	azimuth_angle = 0;
      	error = 5;
+     	fromDegrees = 0;
+     	toDegrees = 0;
+     	
      	// Inicialización de los sensores
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mOrientation = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
@@ -121,39 +134,64 @@ public class Activity_main extends Activity implements SensorEventListener{
 	public void detectOrientation(){
 		radioCardinalityGroup = (RadioGroup) findViewById(R.id.radioCardinality);
 		cardinality = (RadioButton) findViewById(radioCardinalityGroup.getCheckedRadioButtonId());
+        
+		if (cardinality.getId() == R.id.radioSur)
+        {
+			toDegrees = -azimuth_angle+180;
+			if (azimuth_angle >= 180-error && azimuth_angle <= 180+error)
+	            this.dispatchTakePictureIntent();
+        } 
+	    else if (cardinality.getId() == R.id.radioEste)
+        {
+	    	toDegrees = -azimuth_angle+90;
+	    	if (azimuth_angle >= 90-error && azimuth_angle <= 90+error)
+	            this.dispatchTakePictureIntent();
+        } 
+	    else if (cardinality.getId() == R.id.radioOeste)
+        {
+	    	toDegrees = -azimuth_angle+270;
+	    	if (azimuth_angle >= 270-error && azimuth_angle <= 270+error)
+	            this.dispatchTakePictureIntent();
+        } 
+	    else if (cardinality.getId() == R.id.radioNoreste)
+	    {
+	    	toDegrees = -azimuth_angle+45;
+	    	if (azimuth_angle >= 45-error && azimuth_angle <= 45+error)
+	            this.dispatchTakePictureIntent();
+        } 
+	    else if (cardinality.getId() == R.id.radioSureste)
+        {
+	    	toDegrees = -azimuth_angle+135;
+	    	if (azimuth_angle >= 135-error && azimuth_angle <= 135+error)
+	            this.dispatchTakePictureIntent();
+        } 
+	    else if (cardinality.getId() == R.id.radioNoroeste)
+        {
+	    	toDegrees = -azimuth_angle+315;
+	    	if (azimuth_angle >= 315-error && azimuth_angle <= 315+error)
+	            this.dispatchTakePictureIntent();
+        } 
+	    else if (cardinality.getId() == R.id.radioSuroeste)
+        {
+	    	toDegrees = -azimuth_angle+225;
+	    	if (azimuth_angle >= 225-error && azimuth_angle <= 225+error)
+	            this.dispatchTakePictureIntent();
+        }
+	    else if (cardinality.getId() == R.id.radioNorte)
+	    {
+	    	toDegrees = -azimuth_angle;
+	    	if (azimuth_angle >= 360-error || azimuth_angle <= error)
+	            this.dispatchTakePictureIntent();
+        }
 		
-     	if ((azimuth_angle >= 180-error && azimuth_angle <= 180+error) && cardinality.getId() == R.id.radioSur)
-        {
-            this.dispatchTakePictureIntent();
-        } 
-	    else if ((azimuth_angle >= 90-error && azimuth_angle <= 90+error) && cardinality.getId() == R.id.radioEste)
-        {
-            this.dispatchTakePictureIntent();
-        } 
-	    else if ((azimuth_angle >= 270-error && azimuth_angle <= 270+error) && cardinality.getId() == R.id.radioOeste)
-        {
-            this.dispatchTakePictureIntent();
-        } 
-	    else if ((azimuth_angle >= 45-error && azimuth_angle <= 45+error) && cardinality.getId() == R.id.radioNoreste)
-	    {
-            this.dispatchTakePictureIntent();
-        } 
-	    else if ((azimuth_angle >= 135-error && azimuth_angle <= 135+error) && cardinality.getId() == R.id.radioSureste)
-        {
-            this.dispatchTakePictureIntent();
-        } 
-	    else if ((azimuth_angle >= 315-error && azimuth_angle <= 315+error) && cardinality.getId() == R.id.radioNoroeste)
-        {
-            this.dispatchTakePictureIntent();
-        } 
-	    else if ((azimuth_angle >= 225-error && azimuth_angle <= 225+error) && cardinality.getId() == R.id.radioSuroeste)
-        {
-            this.dispatchTakePictureIntent();
-        }
-	    else if ((azimuth_angle >= 360-error || azimuth_angle <= error) && cardinality.getId() == R.id.radioNorte)
-	    {
-            this.dispatchTakePictureIntent();
-        }
+		// Create and exetute rotation animation
+		RotateAnimation rotation = new RotateAnimation(fromDegrees,toDegrees,Animation.RELATIVE_TO_SELF,
+				                                       0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
+        rotation.setDuration(300);
+        rotation.setFillAfter(true);
+        image.startAnimation(rotation);
+        // Update current degree
+        fromDegrees = toDegrees;
 	}
 
 	@Override

@@ -17,72 +17,92 @@
         android:id="@+id/textViewCardinal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="@string/punto_cardinal"/>
     
-    <RadioGroup
-	    android:id="@+id/radioCardinality"
-	    android:layout_width="wrap_content"
-        android:layout_gravity="center"
-	    android:layout_height="wrap_content" >
-	        
-	    <RadioButton
-           android:id="@+id/radioNorte"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_norte"/>
-	        
-        <RadioButton
-           android:id="@+id/radioSur"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:checked="true"
-           android:text="@string/radio_sur"/>
+	<TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginLeft="20dp" 
+	    android:layout_marginRight="20dp"
+	    android:layout_marginBottom="20dp" >
         
-        <RadioButton
-           android:id="@+id/radioEste"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_este"/>
-        
-        <RadioButton
-           android:id="@+id/radioOeste"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_oeste"/>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
     
-		<RadioButton
-           android:id="@+id/radioNoreste"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_noreste"/>
-        
-        <RadioButton
-           android:id="@+id/radioSureste"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_sureste"/>
-        
-        <RadioButton
-           android:id="@+id/radioNoroeste"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_noroeste"/>
-        
-        <RadioButton
-           android:id="@+id/radioSuroeste"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginBottom="10dp"
-           android:text="@string/radio_suroeste"/>
-    </RadioGroup>
+	    <RadioGroup
+		    android:id="@+id/radioCardinality"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+		        
+		    <RadioButton
+	           android:id="@+id/radioNorte"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:text="@string/radio_norte"/>
+		        
+	        <RadioButton
+	           android:id="@+id/radioSur"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:checked="true"
+	           android:text="@string/radio_sur"/>
+	        
+	        <RadioButton
+	           android:id="@+id/radioEste"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:text="@string/radio_este"/>
+	        
+	        <RadioButton
+	           android:id="@+id/radioOeste"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:text="@string/radio_oeste"/>
+	    
+			<RadioButton
+	           android:id="@+id/radioNoreste"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:text="@string/radio_noreste"/>
+	        
+	        <RadioButton
+	           android:id="@+id/radioSureste"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:text="@string/radio_sureste"/>
+	        
+	        <RadioButton
+	           android:id="@+id/radioNoroeste"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_marginBottom="10dp"
+	           android:text="@string/radio_noroeste"/>
+	        
+	        <RadioButton
+	           android:id="@+id/radioSuroeste"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:text="@string/radio_suroeste"/>
+	    </RadioGroup>
+    
+	    <ImageView
+	        android:id="@+id/imageViewFlecha"
+	        android:layout_width="180dp"
+	        android:layout_height="180dp"
+	        android:layout_marginTop="90dp"
+	        android:layout_marginLeft="40dp"
+	        android:src="@drawable/flecha" />
+    	</TableRow>
+	</TableLayout>
     
 </LinearLayout>
