@@ -8,3 +8,4 @@ Android_Projects
   - APPGESTOSQR: App to detect a pattern with your fingers and start QR code recognition.
   - APPFOTOBRUJULA: App to enter a cardinal point that guide the mobile and shoot a photo in this orientation.
   - APPMOVIMIENTOSONIDO: App to play a sound when performing a specific movement.
+  - APPMETALDETECT: App to detect metal near to the smartphone.
