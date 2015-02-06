@@ -4,6 +4,7 @@
     <string name="app_name">appMovimientoSonido</string>
     <string name="action_settings">Ajustes</string>
     <string name="welcome">BIENVENID@</string>
+    <string name="buttonInstructions">INSTRUCCIONES</string>
     <string name="instructions">Tiene que realizar un movimiento en Z:
         \n1º Coloque el dispositivo con la pantalla apuntando al suelo.
         \n2º Realice un desplazamiento hacia la derecha.

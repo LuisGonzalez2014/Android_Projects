@@ -15,10 +15,10 @@
  */
 package com.example.appmetaldetector;
 
-import com.example.appsorpresa.R;
-
+import com.example.appmetaldetector.R;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.hardware.GeomagneticField;
@@ -31,6 +31,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,12 +52,21 @@ public class MainActivity extends Activity implements SensorEventListener {
 	private LocationManager lm; 
 	private Location location;
     private ImageView image;
+    private Button bAbout;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bAbout= (Button) findViewById(R.id.buttonInstructions);
+        bAbout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				launchInstructions();
+				}
+		});
+        
         image = (ImageView) findViewById(R.id.imageViewMetal);
         
         // El dispositivo funcionará con la pantalla en vertical
@@ -71,7 +82,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         
         texto = (TextView) findViewById(R.id.text);
         mSensor = (SensorManager) getSystemService(SENSOR_SERVICE);
-        mSensor.registerListener(this,mSensor.getDefaultSensor(sensor),SensorManager.SENSOR_DELAY_NORMAL);
+        mSensor.registerListener(this,mSensor.getDefaultSensor(sensor),SensorManager.SENSOR_DELAY_GAME);
     }
 
 
@@ -97,7 +108,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		// TODO Auto-generated method stub
 		if (event.sensor.getType() == sensor)
 		{
 			float v0 = event.values[0];
@@ -115,7 +125,7 @@ public class MainActivity extends Activity implements SensorEventListener {
 			{
 				texto.setTextColor(Color.rgb(55, 71, 79));
 				texto.setTextSize(18);
-				texto.setText("Inducción magnética de " + String.format("%.2f", mag) + " µT");
+				texto.setText("Inducción magnética de " + String.format("%.0f", mag) + " µT");
 				image.setImageResource(R.drawable.mdy);
 			}
 			else
@@ -129,7 +139,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
 		
 	}
  
@@ -142,6 +151,11 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     protected void onResume() {
         super.onResume();
-        mSensor.registerListener(this,mSensor.getDefaultSensor(sensor),SensorManager.SENSOR_DELAY_NORMAL);
+        mSensor.registerListener(this,mSensor.getDefaultSensor(sensor),SensorManager.SENSOR_DELAY_GAME);
+    }
+    
+    public void launchInstructions(){
+    	Intent i= new Intent(this, Instructions.class);
+    	startActivity(i);
     }
 }

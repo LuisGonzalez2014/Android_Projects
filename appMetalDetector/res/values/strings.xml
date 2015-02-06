@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">appSorpresa</string>
+    <string name="app_name">appMetalDetector</string>
     <string name="action_settings">Ajustes</string>
     <string name="welcome">BIENVENID@</string>
-    <string name="instructions">Desplace el dispositivo con la parte trasera sobre la superficie a evaluar.</string>
+    <string name="buttonInstructions">INSTRUCCIONES</string>
+    <string name="instructions">Desplace la parte trasera del dispositivo sobre la superficie y
+        compruebe si existe inducción magnética.</string>
 
 </resources>

@@ -16,6 +16,7 @@
 package com.example.appmovimientosonido;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -28,6 +29,7 @@ import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /** Clase para la actividad principal que implementa el control de eventos
@@ -49,12 +51,21 @@ public class Activity_main extends Activity implements SensorEventListener {
 	private Integer acceleration;
 	private float azimuth, pitch, roll;
 	private float X_accel, Y_accel, Z_accel;
+    private Button bAbout;
     
 	@SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.interfaz);
+        
+        bAbout= (Button) findViewById(R.id.buttonInstructions);
+        bAbout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				launchInstructions();
+				}
+		});
         
         // Inicialización de variables
         acceleration = 8;
@@ -168,7 +179,6 @@ public class Activity_main extends Activity implements SensorEventListener {
 	
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
 	}
  
     @Override
@@ -183,5 +193,10 @@ public class Activity_main extends Activity implements SensorEventListener {
         super.onResume();
         mSensor.registerListener(this,mSensor.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),SensorManager.SENSOR_DELAY_UI);
         mSensor.registerListener(this,mSensor.getDefaultSensor(Sensor.TYPE_ORIENTATION),SensorManager.SENSOR_DELAY_UI);
+    }
+    
+    public void launchInstructions(){
+    	Intent i= new Intent(this, Instructions.class);
+    	startActivity(i);
     }
 }

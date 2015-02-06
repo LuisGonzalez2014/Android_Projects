@@ -13,15 +13,14 @@
 	    android:text="@string/welcome"
 	    android:textSize="20sp"	/>
     
-    <TextView
-	    android:id="@+id/instructions"
+    <Button
+        android:id="@+id/buttonInstructions"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:layout_marginRight="20dp"
-	    android:layout_marginLeft="20dp"
+	    android:layout_marginTop="30dp"
 	    android:layout_gravity="center"
-	    android:text="@string/instructions"	/>
+	    android:drawableLeft="@drawable/ic_launcher"
+	    android:text="@string/buttonInstructions"/>
 	
     <TextView
 	    android:id="@+id/texto"
@@ -40,4 +39,12 @@
 	    android:layout_gravity="center"
         android:onClick="resetear"
         android:text="@string/reset" />
+    
+   	<ImageView
+        android:id="@+id/imageViewMovement"
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+    	android:layout_marginTop="30dp"
+    	android:layout_gravity="center"
+    	android:src="@drawable/movement"/>
 </LinearLayout>

@@ -1633,8 +1633,10 @@ containing a value of this type.
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
         public static final int ic_launcher=0x7f020033;
+        public static final int movement=0x7f020034;
     }
     public static final class id {
+        public static final int TextViewInstructions=0x7f0a003f;
         public static final int action_bar=0x7f0a0031;
         public static final int action_bar_activity_content=0x7f0a0003;
         public static final int action_bar_container=0x7f0a0030;
@@ -1648,10 +1650,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a002e;
         public static final int action_mode_bar_stub=0x7f0a002d;
         public static final int action_mode_close_button=0x7f0a0020;
-        public static final int action_settings=0x7f0a0044;
+        public static final int action_settings=0x7f0a0046;
         public static final int activity_chooser_view_content=0x7f0a0021;
         public static final int always=0x7f0a0014;
         public static final int beginning=0x7f0a001b;
+        public static final int buttonInstructions=0x7f0a0042;
         public static final int checkbox=0x7f0a0029;
         public static final int collapseActionView=0x7f0a0015;
         public static final int decor_content_parent=0x7f0a002f;
@@ -1668,8 +1671,8 @@ containing a value of this type.
         public static final int icon=0x7f0a0026;
         public static final int ifRoom=0x7f0a0016;
         public static final int image=0x7f0a0023;
-        public static final int instructions=0x7f0a0041;
-        public static final int linlay=0x7f0a003f;
+        public static final int imageViewMovement=0x7f0a0045;
+        public static final int linlay=0x7f0a0040;
         public static final int listMode=0x7f0a000a;
         public static final int list_item=0x7f0a0025;
         public static final int middle=0x7f0a001d;
@@ -1679,7 +1682,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a002b;
-        public static final int reset=0x7f0a0043;
+        public static final int reset=0x7f0a0044;
         public static final int search_badge=0x7f0a0035;
         public static final int search_bar=0x7f0a0034;
         public static final int search_button=0x7f0a0036;
@@ -1697,11 +1700,11 @@ containing a value of this type.
         public static final int split_action_bar=0x7f0a0004;
         public static final int submit_area=0x7f0a003c;
         public static final int tabMode=0x7f0a000c;
-        public static final int texto=0x7f0a0042;
+        public static final int texto=0x7f0a0043;
         public static final int title=0x7f0a0027;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
-        public static final int welcome=0x7f0a0040;
+        public static final int welcome=0x7f0a0041;
         public static final int withText=0x7f0a0018;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -1754,8 +1757,9 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030014;
         public static final int abc_search_view=0x7f030015;
         public static final int abc_simple_dropdown_hint=0x7f030016;
-        public static final int interfaz=0x7f030017;
-        public static final int support_simple_spinner_dropdown_item=0x7f030018;
+        public static final int instructions=0x7f030017;
+        public static final int interfaz=0x7f030018;
+        public static final int support_simple_spinner_dropdown_item=0x7f030019;
     }
     public static final class menu {
         public static final int activity_main=0x7f0d0000;
@@ -1822,8 +1826,9 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0b0004;
         public static final int action_settings=0x7f0b0011;
         public static final int app_name=0x7f0b0010;
-        public static final int instructions=0x7f0b0013;
-        public static final int reset=0x7f0b0014;
+        public static final int buttonInstructions=0x7f0b0013;
+        public static final int instructions=0x7f0b0014;
+        public static final int reset=0x7f0b0015;
         public static final int welcome=0x7f0b0012;
     }
     public static final class style {
