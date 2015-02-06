@@ -148,21 +148,21 @@ public class Activity_main extends Activity implements SensorEventListener {
 		}
 		// Se ha efectuado una aceleración sobre el dispositivo con la pantalla hacia abajo
 		else if (state.equals(Estado.ON_P1) && Math.abs(X_accel) >= acceleration
-			&& Math.abs(pitch)>=160 && Math.abs(roll)<=15/* && Math.abs(Z_accel) <= 2*/)
+			&& Math.abs(pitch)>=160 && Math.abs(roll)<=15)
         {
            vibracion.vibrate(100);
            state = Estado.ON_P2;
         }
 		// Se ha efectuado una aceleración sobre el dispositivo con la pantalla de costado
         else if (state.equals(Estado.ON_P2) && Math.abs(X_accel)+Math.abs(Z_accel) >= acceleration
-        	&& Math.abs(pitch)<=15 && roll>40 && roll<60)
+        	&& Math.abs(pitch)<=15 && roll>30 && roll<60)
         {
            vibracion.vibrate(100);
            state = Estado.ON_P3;
         }
 		// Se ha efectuado una aceleración sobre el dispositivo con la pantalla hacia abajo
         else if (state.equals(Estado.ON_P3) && Math.abs(X_accel) >= acceleration
-    		&& Math.abs(pitch)>=160 && Math.abs(roll)<=15/* && Math.abs(Z_accel) <= 2*/)
+    		&& Math.abs(pitch)>=160 && Math.abs(roll)<=15)
         {
            vibracion.vibrate(200);
            state = Estado.ON_P4;
